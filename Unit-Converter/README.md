@@ -3,9 +3,12 @@
 - User-friendly dropdown selection for input and output units
 - Real-time conversion using JavaScript
 
+
 **Technologies Used**
-HTML → Structure of the web page
-JavaScript → Handles unit conversion logic
+HTML:Structure of the web page
+JavaScript: Handles unit conversion logic
+
+
 **How It Works**
 The user inputs a value to convert.
 Selects the current unit and the unit to convert to.

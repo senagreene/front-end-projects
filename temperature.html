@@ -1,0 +1,67 @@
+<!-- Input for temperature,current unit,and the unit that will be converted to-->
+<form onsubmit="converter(event)">
+
+    <label for="temperatureInput">Enter the temperature to convert:</label><br>
+    <input type="number" id="temperatureInput" name="temperatureInput"><br><br>
+
+    <label for="currentUnit">Unit to convert from:</label><br>
+    <!-- Dropdown menu created using the select tag for unit selection-->
+    <select name="currentUnit" id="currentUnit">
+        <option value="Celsius">Celsius</option>
+        <option value="Fahrenheit">Fahrenheit</option>
+        <option value="Kelvin">Kelvin</option>
+
+    </select><br><br>
+
+    <label for="convertTo">Unit to convert to:</label><br>
+
+    <select name="convertTo" id="convertTo">
+        <option value="Celsius">Celsius</option>
+        <option value="Fahrenheit">Fahrenheit</option>
+        <option value="Kelvin">Kelvin</option>
+
+    </select><br><br>
+
+    <input type="submit" value="convert">
+</form>
+<p id="result"></p>
+
+
+<!--Temprature Conversion using Javascript -->
+<script>
+
+    function converter(event) {
+        event.preventDefault();
+        let temperatureInput = parseFloat(document.getElementById("temperatureInput").value);
+        let fromUnit = document.getElementById("currentUnit").value;
+        let toUnit = document.getElementById("convertTo").value;
+
+
+
+        if (fromUnit == toUnit) {
+            result = temperatureInput;
+        }
+        else if (fromUnit == "Celsius" && toUnit == "Fahrenheit") {
+            result = (temperatureInput * 9 / 5) + 32;
+        }
+        else if (fromUnit == "Celsius" && toUnit == "Kelvin") {
+            result = temperatureInput + 273.15;
+        }
+        else if (fromUnit == "Fahrenheit" && toUnit == "Celsius") {
+            result = (temperatureInput - 32) * 5 / 9;
+        }
+        else if (fromUnit == "Fahrenheit" && toUnit == "Kelvin") {
+            result = (temperatureInput - 32) * 5 / 9 + 273.15;
+        }
+        else if (fromUnit == "Kelvin" && toUnit == "Celsius") {
+            result = temperatureInput - 273.15;
+        }
+        else if (fromUnit == "Kelvin" && toUnit == "Fahrenheit") {
+            result = (temperatureInput - 273.15) * 9 / 5 + 32;
+        }
+        document.getElementById("result").innerText = `${temperatureInput} ${fromUnit} = ${result.toFixed(4)} ${toUnit}`;
+
+
+
+    }
+</script>

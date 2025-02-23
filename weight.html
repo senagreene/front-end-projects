@@ -1,0 +1,52 @@
+<!-- Input for weight,current unit,and the unit that will be converted to-->
+<form onsubmit="converter(event)">
+
+    <label for="weightInput">Enter the weight to convert:</label><br>
+    <input type="number" id="weightInput" name="weightInput"><br><br>
+
+    <label for="currentUnit">Unit to convert from:</label><br>
+    <!-- Dropdown menu created using the select tag for unit selection-->
+    <select name="currentUnit" id="currentUnit">
+        <option value="milligram">milligram</option>
+        <option value="gram">gram</option>
+        <option value="kilogram">kilogram</option>
+        <option value="ounce">ounce</option>
+        <option value="pound">pound</option>
+    </select><br><br>
+    <label for="convertTo">Unit to convert to:</label><br>
+    <select name="convertTo" id="convertTo">
+        <option value="milligram">milligram</option>
+        <option value="gram">gram</option>
+        <option value="kilogram">kilogram</option>
+        <option value="ounce">ounce</option>
+        <option value="pound">pound</option>
+    </select><br><br>
+
+    <input type="submit" value="convert">
+</form>
+<p id="result"></p>
+
+<!--Weight Conversion using Javascript -->
+
+<script>
+
+    function converter(event) {
+        event.preventDefault();
+        let weightInput = parseFloat(document.getElementById("weightInput").value);
+        let fromUnit = document.getElementById("currentUnit").value;
+        let toUnit = document.getElementById("convertTo").value;
+
+        let conversionFactor = {
+            milligram: 0.001, //1mg =0.001g
+            gram: 1,
+            kilogram: 1000, //1kg = 1000g
+            ounce: 28.3495,//1 ounce = 28.3495g
+            pound: 453.592//1 pound = 453.592g
+        };
+
+        let inGrams = weightInput * conversionFactor[fromUnit];
+        let result = inGrams / conversionFactor[toUnit];
+
+        document.getElementById("result").innerText = `${weightInput} ${fromUnit} = ${result.toFixed(4)} ${toUnit}`;
+    }
+</script>

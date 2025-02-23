@@ -1,0 +1,58 @@
+<!-- Input for length,current unit,and the unit that will be converted to-->
+<form onsubmit="converter(event)">
+
+    <label for="lengthInput">Enter the length to convert:</label><br>
+    <input type="number" id="lengthInput" name="lengthInput"><br><br>
+
+    <label for="currentUnit">Unit to convert from:</label><br>
+    <!-- Dropdown menu created using the select tag for unit selection-->
+    <select name="currentUnit" id="currentUnit">
+        <option value="meter">meter</option>
+        <option value="kilometer">kilometer</option>
+        <option value="centimeter">centimeter</option>
+        <option value="millimeter">millimeter</option>
+        <option value="yard">yard</option>
+        <option value="foot">foot</option>
+        <option value="inch">inch</option>
+    </select><br><br>
+
+    <label for="convertTo">Unit to convert to:</label><br>
+    <select type="text" id="convertTo" name="convertTo">
+        <option value="meter">meter</option>
+        <option value="kilometer">kilometer</option>
+        <option value="centimeter">centimeter</option>
+        <option value="millimeter">millimeter</option>
+        <option value="yard">yard</option>
+        <option value="foot">foot</option>
+        <option value="inch">inch</option>
+    </select><br>
+
+    <br> <input type="submit" value="convert"><br>
+</form>
+<p id="result"></p>
+
+<!--Length Conversion using Javascript -->
+<script>
+
+    function converter(event) {
+        event.preventDefault();
+        let lengthInput = parseFloat(document.getElementById("lengthInput").value);
+        let fromUnit = document.getElementById("currentUnit").value;
+        let toUnit = document.getElementById("convertTo").value;
+
+        let conversionFactor = {
+            meter: 1,
+            kilometer: 1000,
+            centimeter: 0.01,
+            millimeter: 0.001,
+            yard: 0.9144,
+            foot: 0.3048,
+            inch: 0.0254,
+        };
+
+        let inMeters = lengthInput * conversionFactor[fromUnit];
+        let result = inMeters / conversionFactor[toUnit];
+
+        document.getElementById("result").innerText = `${lengthInput} ${fromUnit} = ${result.toFixed(4)} ${toUnit}`;
+    }
+</script>
